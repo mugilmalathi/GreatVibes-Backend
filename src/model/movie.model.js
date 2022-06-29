@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const movieSchema = new mongoose.Schema({
     MovieName : {type:String},
     Rating : {type:Number},
