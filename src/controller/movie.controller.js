@@ -6,11 +6,7 @@ router.post("/movies", async(req, res)=>{
 
     try{
         const movies = await Movie.create(req.body);
-        if(movies){
-            return res.send("Already Movie Exist.!")
-        }else{
-            return res.status(201).send(movies)
-        }
+        return res.status(201).send(movies)
     }catch(err){
         return res.status(500).send({message: err.message})
     }
