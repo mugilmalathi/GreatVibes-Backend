@@ -24,20 +24,26 @@ router.get("/movies", async(req, res)=>{
     }
 })
 
-router.patch("/movies/id", async(req, res)=>{
+router.patch("/movies/:id", async(req, res)=>{
 
     try{
-        const movies = await Movie.findByIdAndUpdate(req.body, {new: true})
+        const movies = await Movie.findByIdAndUpdate(
+            req.params.id, 
+            req.body,{
+                new: true
+            })
         return res.status(201).send(movies)
     }catch(err){
         return res.status(500).send({message: err.message})
     }
 })
 
-router.delete("/movies/id", async(req, res)=>{
+router.delete("/movies/:id", async(req, res)=>{
 
     try{
-        const movies = await Movie.findByIdAndDelete();
+        const movies = await Movie.findByIdAndDelete(
+            req.params.id
+        );
         return res.status(201).send(movies)
     }catch(err){
         return res.status(500).send({message: err.message})
